@@ -8,7 +8,6 @@ namespace OrderService.Infrastructure.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
-           
             builder.OwnsOne(o => o.Address, a =>
             {
                 a.WithOwner();

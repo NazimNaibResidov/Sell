@@ -5,12 +5,11 @@ using OrderService.Domain.Events;
 
 namespace OrderService.Application.DomainEventHandler
 {
-
     public class OrderStartedDomainEventHandler : INotificationHandler<OrderStartedDomainEvent>
     {
-        private readonly IBuyerRepsotory  buyerRepository;
+        private readonly IBuyerRepsotory buyerRepository;
 
-        public OrderStartedDomainEventHandler(IBuyerRepsotory  buyerRepository)
+        public OrderStartedDomainEventHandler(IBuyerRepsotory buyerRepository)
         {
             this.buyerRepository = buyerRepository;
         }
@@ -28,9 +27,7 @@ namespace OrderService.Application.DomainEventHandler
             var buyerUpdate = buyerOrginallyExits ?
                 buyerRepository.Update(buyer) :
                 await buyerRepository.AddAsync(buyer);
-            await buyerRepository.unitOfWork.Savesavechangesasync(cancellationToken);
-                
-           
+            await buyerRepository.unitOfWork.SaveChangesAsync(cancellationToken);
         }
     }
 }

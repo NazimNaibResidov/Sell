@@ -1,10 +1,8 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
 
 namespace OrderService.Domain.SeedWork
 {
-    public abstract class BaseEntity:INotification
+    public abstract class BaseEntity /*: INotification*/
     {
         public virtual Guid Id { get; set; }
         public DateTime CreateDate { get; set; }
@@ -23,6 +21,10 @@ namespace OrderService.Domain.SeedWork
             domainEvents.Remove(notification);
         }
 
+        public void ClearDomainEvent()
+        {
+            domainEvents?.Clear();
+        }
         public void ClearDomainEvent(INotification notification)
         {
             domainEvents.Clear();

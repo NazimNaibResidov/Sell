@@ -1,9 +1,6 @@
 ﻿using OrderService.Domain.AggregateModel.OrderAggreage;
 using OrderService.Domain.Events;
 using OrderService.Domain.SeedWork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace OrderService.Domain.AggregateModel.BuyerAggregate
 {
@@ -28,9 +25,9 @@ namespace OrderService.Domain.AggregateModel.BuyerAggregate
             IdentityGuid = !string.IsNullOrWhiteSpace(identity) ? identity : throw new ArgumentNullException(nameof(identity));
             Name = !string.IsNullOrWhiteSpace(name) ? name : throw new ArgumentNullException(nameof(name));
         }
+
         public Buyer(string name) : this()
         {
-          
             Name = !string.IsNullOrWhiteSpace(name) ? name : throw new ArgumentNullException(nameof(name));
         }
 
@@ -56,6 +53,7 @@ namespace OrderService.Domain.AggregateModel.BuyerAggregate
 
             return payment;
         }
+
         public override bool Equals(object obj)
         {
             return base.Equals(obj) ||

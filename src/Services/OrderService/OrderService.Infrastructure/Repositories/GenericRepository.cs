@@ -3,12 +3,7 @@ using OrderService.Application.Interfaces.Repostory;
 using OrderService.Domain.Interfaces;
 using OrderService.Domain.SeedWork;
 using OrderService.Infrastructure.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrderService.Infrastructure.Repositories
 {
@@ -18,12 +13,12 @@ namespace OrderService.Infrastructure.Repositories
 
         public GenericRepository(OrderDbContext context)
         {
-            this.context = context??throw new ArgumentNullException(nameof(context));
+            this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public IUnitOfWork unitOfWork { get; }
 
-        public async virtual Task<T> AddAsync(T entity)
+        public virtual async Task<T> AddAsync(T entity)
         {
             await context.Set<T>().AddAsync(entity);
             return entity;
@@ -34,7 +29,6 @@ namespace OrderService.Infrastructure.Repositories
             IQueryable<T> query = context.Set<T>();
             foreach (var includeProperty in includeProperties)
             {
-                
                 query = query.Include(includeProperty);
             }
             if (filter != null)
@@ -42,11 +36,9 @@ namespace OrderService.Infrastructure.Repositories
                 query = query.Where(filter);
             }
 
-            
-
             if (orderBy != null)
             {
-                query= orderBy(query);
+                query = orderBy(query);
             }
             return await query.ToListAsync();
         }
@@ -64,7 +56,6 @@ namespace OrderService.Infrastructure.Repositories
         public virtual async Task<T> GetById(Guid id)
         {
             return await context.Set<T>().FindAsync(id);
-            
         }
 
         public virtual async Task<T> GetByIdAsyc(Guid id, params Expression<Func<T, object>>[] include)
@@ -75,7 +66,6 @@ namespace OrderService.Infrastructure.Repositories
                 query = query.Include(includeProperty);
             }
             return await query.FirstOrDefaultAsync(x => x.Id == id);
-
         }
 
         public virtual async Task<T> GetSingleAsyc(Expression<Func<T, bool>> expression, params Expression<Func<T, object>>[] include)

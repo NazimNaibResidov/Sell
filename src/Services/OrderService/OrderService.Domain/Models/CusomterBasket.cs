@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace OrderService.Domain.Models
+﻿namespace OrderService.Domain.Models
 {
     public class CusomterBasket
     {

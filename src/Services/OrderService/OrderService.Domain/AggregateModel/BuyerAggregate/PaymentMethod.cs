@@ -1,11 +1,8 @@
 ﻿using OrderService.Domain.Exceptions;
 using OrderService.Domain.SeedWork;
-using System;
-using System.Collections.Generic;
 
 namespace OrderService.Domain.AggregateModel.BuyerAggregate
 {
-  
     public class PaymentMethod
     : BaseEntity
     {

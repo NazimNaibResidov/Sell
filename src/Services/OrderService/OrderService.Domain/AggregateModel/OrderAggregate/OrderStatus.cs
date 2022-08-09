@@ -1,8 +1,5 @@
 ﻿using OrderService.Domain.Exceptions;
 using OrderService.Domain.SeedWork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace OrderService.Domain.AggregateModel.OrderAggreage
 {

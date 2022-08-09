@@ -1,7 +1,4 @@
-﻿using OrderService.Domain.AggregateModel.OrderAggreage;
-using System.Threading.Tasks;
-
-namespace OrderService.Domain.Interfaces
+﻿namespace OrderService.Domain.Interfaces
 {
     //public interface IOrderRepository : IRepository<Order>
     //{

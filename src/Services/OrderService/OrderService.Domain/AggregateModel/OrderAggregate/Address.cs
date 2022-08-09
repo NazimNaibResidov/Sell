@@ -1,8 +1,4 @@
-﻿using OrderService.Domain.SeedWork;
-using System;
-using System.Collections.Generic;
-
-namespace OrderService.Domain.AggregateModel.OrderAggreage
+﻿namespace OrderService.Domain.AggregateModel.OrderAggreage
 {
     public record Address /*: ValueObject*/
     {

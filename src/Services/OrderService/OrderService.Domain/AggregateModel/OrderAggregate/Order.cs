@@ -2,18 +2,14 @@
 using OrderService.Domain.Events;
 using OrderService.Domain.Exceptions;
 using OrderService.Domain.SeedWork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace OrderService.Domain.AggregateModel.OrderAggreage
 {
     public class Order
     : BaseEntity, IAggregateRoot
     {
-       
         private DateTime OrderDate;
-        public int Quantity { get;private set; }
+        public int Quantity { get; private set; }
         public string Description { get; private set; }
         public Guid? BuyerId { get; set; }
         public Buyer Buyer { get; set; }
@@ -25,21 +21,15 @@ namespace OrderService.Domain.AggregateModel.OrderAggreage
 
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItems;
         private Guid? PaymentMethodId;
-       
-       
+
         //private bool _isDraft;
 
-     
         private readonly List<OrderItem> _orderItems;
-
-       
-
-       
 
         public static Order NewDraft()
         {
             var order = new Order();
-          
+
             return order;
         }
 
@@ -62,7 +52,7 @@ namespace OrderService.Domain.AggregateModel.OrderAggreage
                                         cardSecurityNumber, cardHolderName, cardExpiration);
         }
 
-       public void AddOrderItem(int productId, string productName, decimal unitPrice, decimal discount, string pictureUrl, int units = 1)
+        public void AddOrderItem(int productId, string productName, decimal unitPrice, decimal discount, string pictureUrl, int units = 1)
         {
             var orderItems = new OrderItem(productName, pictureUrl, unitPrice, discount, units, productId);
             _orderItems.Add(orderItems);

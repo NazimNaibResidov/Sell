@@ -1,7 +1,4 @@
-﻿using OrderService.Domain.Exceptions;
-using OrderService.Domain.SeedWork;
-using System.Collections;
-using System.Collections.Generic;
+﻿using OrderService.Domain.SeedWork;
 using System.ComponentModel.DataAnnotations;
 
 namespace OrderService.Domain.AggregateModel.OrderAggreage
@@ -9,7 +6,6 @@ namespace OrderService.Domain.AggregateModel.OrderAggreage
     public class OrderItem
      : IAggregateRoot
     {
-        
         public string ProductName;
 
         public string PictureUrl;
@@ -17,7 +13,7 @@ namespace OrderService.Domain.AggregateModel.OrderAggreage
         public decimal Discount;
         public int Units;
 
-        public int ProductId { get;  set; }
+        public int ProductId { get; set; }
 
         protected OrderItem()
         { }
@@ -31,16 +27,19 @@ namespace OrderService.Domain.AggregateModel.OrderAggreage
             Units = units;
             ProductId = productId;
         }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext context)
         {
             var results = new List<ValidationResult>();
-            if (Units<=0)
+            if (Units <= 0)
             {
                 results.Add(new ValidationResult("Invalid number if units", new[] { "units" }));
             }
             return results;
         }
+
         public string GetOrderItemProductName() => ProductName;
+
         public int GetUnits()
         {
             return Units;
@@ -51,4 +50,4 @@ namespace OrderService.Domain.AggregateModel.OrderAggreage
             return UnitPrice;
         }
     }
-  }
+}

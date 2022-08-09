@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using OrderService.Application.ViewModels;
-using System;
 
 namespace OrderService.Application.Features.Queries.GetOrderbyId
 {

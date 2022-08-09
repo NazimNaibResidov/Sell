@@ -1,13 +1,12 @@
 ﻿using MediatR;
 using OrderService.Domain.AggregateModel.OrderAggreage;
-using System;
 
 namespace OrderService.Domain.Events
 {
     public class OrderStartedDomainEvent : INotification
     {
         public Guid UserId { get; }
-        
+
         public string UserName { get; }
         public int CardTypeId { get; }
         public string CardNumber { get; }

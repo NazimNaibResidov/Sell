@@ -1,6 +1,6 @@
 ﻿namespace OrderService.Application.ViewModels
 {
-    public class OrderItemDTO
+    public class OrderItem
     {
         public string ProductName { get; set; }
 

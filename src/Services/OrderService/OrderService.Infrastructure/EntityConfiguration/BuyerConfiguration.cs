@@ -7,7 +7,7 @@ namespace OrderService.Infrastructure.EntityConfiguration
 {
     public class BuyerConfiguration : IEntityTypeConfiguration<Buyer>
     {
-        public  void Configure(EntityTypeBuilder<Buyer> builder)
+        public void Configure(EntityTypeBuilder<Buyer> builder)
         {
             builder.ToTable(nameof(builder), OrderDbContext.DEFAULT_SCHEMA);
             builder.HasKey(x => x.Id);
@@ -24,7 +24,6 @@ namespace OrderService.Infrastructure.EntityConfiguration
                 .OnDelete(DeleteBehavior.Cascade);
             var navigator = builder.Metadata.FindNavigation(nameof(Buyer.PaymentMethods));
             navigator.SetPropertyAccessMode(PropertyAccessMode.Field);
-            
         }
     }
 }

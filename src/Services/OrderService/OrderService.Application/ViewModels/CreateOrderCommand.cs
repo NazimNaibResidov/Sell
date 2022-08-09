@@ -2,9 +2,9 @@
 
 namespace OrderService.Application.ViewModels
 {
-    public class CreateOrderCommand:IRequest<bool>
+    public class CreateOrderCommand : IRequest<bool>
     {
-        public CreateOrderCommand(List<OrderItemDTO> orderItems)
+        public CreateOrderCommand(List<OrderItem> orderItems)
         {
             _orderItems = orderItems;
         }
@@ -27,13 +27,13 @@ namespace OrderService.Application.ViewModels
             CartTypeId = cartTypeId;
         }
 
-        private  List<OrderItemDTO> _orderItems { get; set; }
+        private List<OrderItem> _orderItems { get; set; }
         public string UserName { get; set; }
         public string City { get; set; }
         public string Street { get; set; }
         public string State { get; set; }
         public string Contry { get; set; }
-       
+
         public string Status { get; set; }
         public string ZipCode { get; set; }
         public string Descrriptiond { get; set; }
@@ -44,8 +44,7 @@ namespace OrderService.Application.ViewModels
         public string CarrelationId { get; set; }
         public int CartTypeId { get; set; }
 
-       
-        private IEnumerable<OrderItemDTO> OrderItems => _orderItems;
+        private IEnumerable<OrderItem> OrderItems => _orderItems;
         public decimal Total { get; set; }
     }
 }

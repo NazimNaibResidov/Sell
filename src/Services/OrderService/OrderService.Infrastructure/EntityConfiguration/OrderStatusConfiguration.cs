@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OrderService.Domain.AggregateModel.OrderAggreage;
-using System;
 
 namespace OrderService.Infrastructure.EntityConfiguration
 {

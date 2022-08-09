@@ -9,7 +9,5 @@ namespace OrderService.Infrastructure.Repositories
         public BuyerRepository(OrderDbContext context) : base(context)
         {
         }
-
-      
     }
 }
