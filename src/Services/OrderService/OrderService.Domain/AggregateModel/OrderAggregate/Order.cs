@@ -39,8 +39,8 @@ namespace OrderService.Domain.AggregateModel.OrderAggreage
             Id = Guid.NewGuid();
         }
 
-        public Order(Guid userId, string userName, Address address, int cardTypeId, string cardNumber, string cardSecurityNumber,
-                string cardHolderName, DateTime cardExpiration, Guid? buyerId = null, Guid? paymentMethodId = null) : this()
+        public Order(string userName, Address address, int cardTypeId, string cardNumber, string cardSecurityNumber,
+                string cardHolderName, DateTime cardExpiration, Guid? paymentMethodId = null,Guid ? buyerId = null) : this()
         {
             BuyerId = buyerId;
             PaymentMethodId = paymentMethodId;
@@ -48,13 +48,25 @@ namespace OrderService.Domain.AggregateModel.OrderAggreage
             OrderDate = DateTime.UtcNow;
             Address = address;
 
-            AddOrderStartedDomainEvent(userId, userName, cardTypeId, cardNumber,
+            AddOrderStartedDomainEvent(userName, cardTypeId, cardNumber,
                                         cardSecurityNumber, cardHolderName, cardExpiration);
         }
+        //public Order(Guid userId, string userName, Address address, int cardTypeId, string cardNumber, string cardSecurityNumber,
+        //      string cardHolderName, DateTime cardExpiration, Guid? buyerId = null, Guid? paymentMethodId = null) : this()
+        //{
+        //    BuyerId = buyerId;
+        //    PaymentMethodId = paymentMethodId;
+        //    orderStatusId = OrderStatus.Submitted.Id;
+        //    OrderDate = DateTime.UtcNow;
+        //    Address = address;
 
-        public void AddOrderItem(int productId, string productName, decimal unitPrice, decimal discount, string pictureUrl, int units = 1)
+        //    AddOrderStartedDomainEvent(userId, userName, cardTypeId, cardNumber,
+        //                                cardSecurityNumber, cardHolderName, cardExpiration);
+        //}
+
+        public void AddOrderItem(int productId, string productName, decimal unitPrice,  string pictureUrl, int units = 1)
         {
-            var orderItems = new OrderItem(productName, pictureUrl, unitPrice, discount, units, productId);
+            var orderItems = new OrderItem(productName, pictureUrl, unitPrice, units, productId);
             _orderItems.Add(orderItems);
         }
 
@@ -138,12 +150,10 @@ namespace OrderService.Domain.AggregateModel.OrderAggreage
             }
         }
 
-        private void AddOrderStartedDomainEvent(Guid userId, string userName, int cardTypeId, string cardNumber,
+        private void AddOrderStartedDomainEvent( string userName, int cardTypeId, string cardNumber,
                 string cardSecurityNumber, string cardHolderName, DateTime cardExpiration)
         {
-            var orderStartedDomainEvent = new OrderStartedDomainEvent(this, userId, userName, cardTypeId,
-                                                                        cardNumber, cardSecurityNumber,
-                                                                        cardHolderName, cardExpiration);
+            var orderStartedDomainEvent = new OrderStartedDomainEvent(userName, cardTypeId, cardNumber, cardSecurityNumber, cardHolderName, cardExpiration, this);
 
             this.AddDomainEvent(orderStartedDomainEvent);
         }

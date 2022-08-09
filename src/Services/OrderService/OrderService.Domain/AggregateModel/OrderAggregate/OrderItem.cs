@@ -18,12 +18,12 @@ namespace OrderService.Domain.AggregateModel.OrderAggreage
         protected OrderItem()
         { }
 
-        public OrderItem(string productName, string pictureUrl, decimal unitPrice, decimal discount, int units, int productId)
+        public OrderItem(string productName, string pictureUrl, decimal unitPrice, /*decimal discount,*/ int units, int productId)
         {
             ProductName = productName;
             PictureUrl = pictureUrl;
             UnitPrice = unitPrice;
-            Discount = discount;
+            //Discount = discount;
             Units = units;
             ProductId = productId;
         }

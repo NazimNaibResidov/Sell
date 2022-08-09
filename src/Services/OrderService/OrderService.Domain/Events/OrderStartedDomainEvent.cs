@@ -15,19 +15,30 @@ namespace OrderService.Domain.Events
         public DateTime CardExpiration { get; }
         public Order Order { get; }
 
-        public OrderStartedDomainEvent(Order order, Guid userId, string userName,
-                                       int cardTypeId, string cardNumber,
-                                       string cardSecurityNumber, string cardHolderName,
-                                       DateTime cardExpiration)
+        //public OrderStartedDomainEvent(Order order,Guid userId,  string userName,
+        //                               int cardTypeId, string cardNumber,
+        //                               string cardSecurityNumber, string cardHolderName,
+        //                               DateTime cardExpiration)
+        //{
+        //    Order = order;
+        //    UserId = userId;
+        //    UserName = userName;
+        //    CardTypeId = cardTypeId;
+        //    CardNumber = cardNumber;
+        //    CardSecurityNumber = cardSecurityNumber;
+        //    CardHolderName = cardHolderName;
+        //    CardExpiration = cardExpiration;
+        //}
+
+        public OrderStartedDomainEvent(string userName, int cardTypeId, string cardNumber, string cardSecurityNumber, string cardHolderName, DateTime cardExpiration, Order order)
         {
-            Order = order;
-            UserId = userId;
             UserName = userName;
             CardTypeId = cardTypeId;
             CardNumber = cardNumber;
             CardSecurityNumber = cardSecurityNumber;
             CardHolderName = cardHolderName;
             CardExpiration = cardExpiration;
+            Order = order;
         }
     }
 }
