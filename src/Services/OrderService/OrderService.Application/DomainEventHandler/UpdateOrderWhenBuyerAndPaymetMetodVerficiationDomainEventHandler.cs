@@ -10,7 +10,7 @@ namespace OrderService.Application.DomainEventHandler
 
         public UpdateOrderWhenBuyerAndPaymetMetodVerficiationDomainEventHandler(IOrderRepsotory repsotory)
         {
-            this.repsotory = repsotory?? throw new ArgumentNullException(nameof(repsotory));
+            this.repsotory = repsotory ?? throw new ArgumentNullException(nameof(repsotory));
         }
 
         public async Task Handle(BuyerAndPaymentMethodVerifiedDomainEvent buyerAndPaymentMethodVerifiedDomainEvent, CancellationToken cancellationToken)
@@ -18,7 +18,6 @@ namespace OrderService.Application.DomainEventHandler
             var orderToUpdate = await repsotory.GetByIdAsyc(buyerAndPaymentMethodVerifiedDomainEvent.OrderId);
             orderToUpdate.SetBuyerId(buyerAndPaymentMethodVerifiedDomainEvent.Buyer.Id);
             orderToUpdate.SetPaymentId(buyerAndPaymentMethodVerifiedDomainEvent.Payment.Id);
-            
         }
     }
 }

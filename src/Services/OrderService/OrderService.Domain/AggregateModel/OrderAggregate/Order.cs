@@ -40,7 +40,7 @@ namespace OrderService.Domain.AggregateModel.OrderAggreage
         }
 
         public Order(string userName, Address address, int cardTypeId, string cardNumber, string cardSecurityNumber,
-                string cardHolderName, DateTime cardExpiration, Guid? paymentMethodId = null,Guid ? buyerId = null) : this()
+                string cardHolderName, DateTime cardExpiration, Guid? paymentMethodId = null, Guid? buyerId = null) : this()
         {
             BuyerId = buyerId;
             PaymentMethodId = paymentMethodId;
@@ -51,6 +51,7 @@ namespace OrderService.Domain.AggregateModel.OrderAggreage
             AddOrderStartedDomainEvent(userName, cardTypeId, cardNumber,
                                         cardSecurityNumber, cardHolderName, cardExpiration);
         }
+
         //public Order(Guid userId, string userName, Address address, int cardTypeId, string cardNumber, string cardSecurityNumber,
         //      string cardHolderName, DateTime cardExpiration, Guid? buyerId = null, Guid? paymentMethodId = null) : this()
         //{
@@ -64,7 +65,7 @@ namespace OrderService.Domain.AggregateModel.OrderAggreage
         //                                cardSecurityNumber, cardHolderName, cardExpiration);
         //}
 
-        public void AddOrderItem(int productId, string productName, decimal unitPrice,  string pictureUrl, int units = 1)
+        public void AddOrderItem(int productId, string productName, decimal unitPrice, string pictureUrl, int units = 1)
         {
             var orderItems = new OrderItem(productName, pictureUrl, unitPrice, units, productId);
             _orderItems.Add(orderItems);
@@ -150,7 +151,7 @@ namespace OrderService.Domain.AggregateModel.OrderAggreage
             }
         }
 
-        private void AddOrderStartedDomainEvent( string userName, int cardTypeId, string cardNumber,
+        private void AddOrderStartedDomainEvent(string userName, int cardTypeId, string cardNumber,
                 string cardSecurityNumber, string cardHolderName, DateTime cardExpiration)
         {
             var orderStartedDomainEvent = new OrderStartedDomainEvent(userName, cardTypeId, cardNumber, cardSecurityNumber, cardHolderName, cardExpiration, this);

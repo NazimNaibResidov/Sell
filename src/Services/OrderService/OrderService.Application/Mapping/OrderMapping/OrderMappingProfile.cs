@@ -1,15 +1,10 @@
 ﻿using AutoMapper;
 using OrderService.Application.ViewModels;
 using OrderService.Domain.AggregateModel.OrderAggreage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrderService.Application.Mapping.OrderMapping
 {
-    public class OrderMappingProfile:Profile
+    public class OrderMappingProfile : Profile
     {
         public OrderMappingProfile()
         {
