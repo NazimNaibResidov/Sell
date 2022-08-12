@@ -25,6 +25,7 @@ namespace OrderService.Domain.SeedWork
         {
             domainEvents?.Clear();
         }
+
         public void ClearDomainEvent(INotification notification)
         {
             domainEvents.Clear();

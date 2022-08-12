@@ -4,7 +4,6 @@ using OrderService.Infrastructure.Context;
 
 namespace OrderService.Infrastructure.Exceptions
 {
-
     public static class MediatorException
     {
         public static async Task DispatchDomainEventsAsync(this IMediator mediator, OrderDbContext ctx)

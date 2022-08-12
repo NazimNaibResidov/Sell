@@ -27,9 +27,6 @@
       "UpstreamSheme": "http"
     }
 
-
-
-
   ],
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:5005",
@@ -39,5 +36,4 @@
       "PollingInterval": 5000
     }
   }
-
-}  
+}
