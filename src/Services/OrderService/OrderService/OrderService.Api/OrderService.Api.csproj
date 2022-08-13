@@ -11,7 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BuildingBlocks\EventBus\EventBus.Base\EventBus.Base\EventBus.Base.csproj" />
+    <ProjectReference Include="..\..\OrderService.Application\OrderService.Application.csproj" />
+    <ProjectReference Include="..\..\OrderService.Domain\OrderService.Domain.csproj" />
   </ItemGroup>
 
 </Project>
