@@ -9,5 +9,5 @@ namespace OrderService.Api.Extensions
             services.AddTransient<OrderCreateIntegrationEventHandler>();
             return services;
         }
-    } 
+    }
 }

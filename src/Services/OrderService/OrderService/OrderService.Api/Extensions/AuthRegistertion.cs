@@ -4,7 +4,6 @@ using System.Text;
 
 namespace OrderService.Api.Extensions
 {
-    
     public static class AuthRegistertion
     {
         public static IServiceCollection RegisterionAuth(this IServiceCollection servic, IConfiguration confguration)
@@ -20,7 +19,7 @@ namespace OrderService.Api.Extensions
                 {
                     options.RequireHttpsMetadata = false;
                     options.SaveToken = false;
-                   
+
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = false,
