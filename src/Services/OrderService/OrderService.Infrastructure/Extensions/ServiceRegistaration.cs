@@ -16,10 +16,12 @@ namespace OrderService.Infrastructure.Exceptions
                 ops.UseSqlServer("server=.;database=myDb;trusted_connection=true;");
                 ops.EnableSensitiveDataLogging();
             });
+            //
+            var connectionString = configuration.GetConnectionString("OrderDb");
             services.AddScoped<IBuyerRepsotory, BuyerRepository>();
             services.AddScoped<IOrderRepsotory, OrderRepository>();
             var optionsBuilder = new DbContextOptionsBuilder<OrderDbContext>
-                ().UseSqlServer("server=.;database=myDb;trusted_connection=true;");
+                ().UseSqlServer(connectionString);
             var dbContext = new OrderDbContext(optionsBuilder.Options, null);
             dbContext.Database.EnsureCreated();
             dbContext.Database.Migrate();

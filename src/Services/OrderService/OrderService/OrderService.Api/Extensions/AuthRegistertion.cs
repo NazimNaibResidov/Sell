@@ -4,6 +4,7 @@ using System.Text;
 
 namespace OrderService.Api.Extensions
 {
+    
     public static class AuthRegistertion
     {
         public static IServiceCollection RegisterionAuth(this IServiceCollection servic, IConfiguration confguration)
