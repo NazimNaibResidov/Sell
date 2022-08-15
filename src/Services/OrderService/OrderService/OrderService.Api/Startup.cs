@@ -1,4 +1,12 @@
+using EventBus.Base;
+using EventBus.Base.Abstrasctions;
+using EventBus.Factory;
 using Microsoft.OpenApi.Models;
+using OrderService.Api.Extensions;
+using OrderService.Api.IntegrationEvents.EventHandlers;
+using OrderService.Api.IntegrationEvents.Events;
+using OrderService.Application.Extensions;
+using OrderService.Infrastructure.Exceptions;
 
 namespace BasketService.Api
 {
@@ -20,6 +28,7 @@ namespace BasketService.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BasketService.Api", Version = "v1" });
             });
+            CongirationService(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,7 +40,7 @@ namespace BasketService.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BasketService.Api v1"));
             }
-
+            CreateEventHandler(app);
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -42,6 +51,29 @@ namespace BasketService.Api
             {
                 endpoints.MapControllers();
             });
+        }
+        private  void CongirationService(IServiceCollection services)
+        {
+            services.AddLogging(configuraer => configuraer.AddConsole())
+                .AddApplicationRegistration(typeof(Startup))
+                .AddPersistenceRegistration(Configuration)
+                .ConfigrationEventsHandler();
+            services.AddSingleton(sp =>
+            {
+                EventBusConfig config = new EventBusConfig()
+                {
+                    ConnectionRetryCount = 5,
+                    EventNameSuffix = "IntegrationEvent",
+                    SubscriptionClinetAppName = "OrderService",
+                    eventBusType = EventBusType.RabbitMq
+                };
+                return EventBusFactory.Create(config, sp); 
+            });
+        }
+        private void CreateEventHandler(IApplicationBuilder app)
+        {
+            var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+            eventBus.Subscribe<OrderCreateIntegrationEvent, OrderCreateIntegrationEventHandler>();
         }
     }
 }
