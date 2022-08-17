@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <Folder Include="Infrasctrure\" />
+    <Folder Include="Pages\Login\" />
   </ItemGroup>
 
 </Project>
