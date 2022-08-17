@@ -1,6 +1,8 @@
 {
   "ReRoutes": [
     {
+      "UseServiceDiscovery":true,
+      "ServiceName":"CatalogService",
       "DownstreamPathTemplate": "/api/catalog/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -14,6 +16,8 @@
       "UpstreamSheme": "http"
     },
     {
+      "UseServiceDiscovery":true,
+      "ServiceName":"IndentityService",
       "DownstreamPathTemplate": "/api/auth",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -29,7 +33,7 @@
 
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:5005",
+    "BaseUrl": "http://localhost:5000",
     "ServiceDiscoveryProvider": {
       "Host": "localhost",
       "Port": 8500,

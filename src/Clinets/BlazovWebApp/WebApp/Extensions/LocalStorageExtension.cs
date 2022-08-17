@@ -24,6 +24,7 @@ namespace WebApp.Extensions
         {
             await service.SetItemAsync("username", value);
         }
+
         public static string GetToke(this ISyncLocalStorageService service)
         {
             return service.GetItem<string>("token");
