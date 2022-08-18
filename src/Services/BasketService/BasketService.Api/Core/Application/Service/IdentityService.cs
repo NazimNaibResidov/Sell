@@ -12,7 +12,7 @@ namespace BasketService.Api.Core.Application.Service
             this.httpContextAccessor = httpContextAccessor;
         }
 
-        public string GetUsers()
+        public string GetUserName()
         {
             return httpContextAccessor.HttpContext.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier).Value;
         }

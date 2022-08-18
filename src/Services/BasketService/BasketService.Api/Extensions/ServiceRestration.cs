@@ -9,7 +9,7 @@ namespace BasketService.Api.Extensions
         public static IServiceCollection Services(this IServiceCollection servic)
         {
             servic.AddHttpContextAccessor();
-            servic.AddScoped<IBasketRepsotory, RedisBasketRepsotory>();
+            servic.AddScoped<IBasketRepsotory, BasketRepsotory>();
             servic.AddTransient<IIdentityService, IdentityService>();
             return servic;
         }

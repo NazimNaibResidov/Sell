@@ -17,7 +17,7 @@ namespace Web.Api
              {
                  config
                      .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
-                     .AddJsonFile("Configurations/ocelot.json")
+                     .AddJsonFile("Configurations/ocelot.json", optional: false, reloadOnChange: true)
                      .AddEnvironmentVariables();
              })
                 .ConfigureWebHostDefaults(webBuilder =>

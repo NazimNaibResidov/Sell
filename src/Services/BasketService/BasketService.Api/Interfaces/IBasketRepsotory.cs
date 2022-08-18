@@ -1,6 +1,4 @@
 ﻿using BasketService.Api.Core.Domain.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace BasketService.Api.Interfaces
 {

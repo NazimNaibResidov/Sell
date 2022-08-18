@@ -1,8 +1,8 @@
 {
   "ReRoutes": [
     {
-      "UseServiceDiscovery":true,
-      "ServiceName":"CatalogService",
+      "UseServiceDiscovery": true,
+      "ServiceName": "CatalogService",
       "DownstreamPathTemplate": "/api/catalog/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -16,14 +16,29 @@
       "UpstreamSheme": "http"
     },
     {
-      "UseServiceDiscovery":true,
-      "ServiceName":"IndentityService",
+      "UseServiceDiscovery": true,
+      "ServiceName": "IndentityService",
       "DownstreamPathTemplate": "/api/auth",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 5005
+        }
+      ],
+      "UpstreamPathTemplate": "/auth",
+      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamSheme": "http"
+    },
+    {
+      "UseServiceDiscovery": true,
+      "ServiceName": "BasketService",
+      "DownstreamPathTemplate": "/api/Basket",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
         }
       ],
       "UpstreamPathTemplate": "/auth",
@@ -37,7 +52,7 @@
     "ServiceDiscoveryProvider": {
       "Host": "localhost",
       "Port": 8500,
-      "PollingInterval": 5000
+      "Type": "Consul"
     }
   }
 }

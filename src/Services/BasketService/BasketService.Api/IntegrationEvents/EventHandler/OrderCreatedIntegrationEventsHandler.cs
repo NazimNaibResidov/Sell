@@ -1,8 +1,6 @@
 ﻿using BasketService.Api.IntegrationEvents.Events;
 using BasketService.Api.Interfaces;
 using EventBus.Base.Abstrasctions;
-using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
 
 namespace BasketService.Api.IntegrationEvents.EventHandler
 {

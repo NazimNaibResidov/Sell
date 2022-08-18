@@ -15,22 +15,23 @@ namespace BasketService.Api.Extensions
             }));
             return services;
         }
+
         public static IApplicationBuilder RegisterWithConsule(this IApplicationBuilder app, IHostApplicationLifetime lifetime)
         {
             var consulClient = app.ApplicationServices.GetRequiredService<IConsulClient>();
             var loggerFactory = app.ApplicationServices.GetRequiredService<ILoggerFactory>();
             var logger = loggerFactory.CreateLogger<IApplicationBuilder>();
-            var features = app.Properties["server:Features"] as FeatureCollection;
+            var features = app.Properties["server.Features"] as FeatureCollection;
             var adresses = features.Get<IServerAddressesFeature>();
             var adress = adresses.Addresses.First();
             var url = new Uri(adress);
             var resistrations = new AgentServiceRegistration()
             {
-                ID = $"CatalogService",
-                Name = $"CatalogService",
+                ID = $"BasketService",
+                Name = $"BasketService",
                 Address = $"{url.Host}",
                 Port = url.Port,
-                Tags = new[] { "Catalog Service", "Catalog" }
+                Tags = new[] { "Basket Service", "Basket" }
             };
             logger.LogInformation("Registration With Consule");
             consulClient.Agent.ServiceDeregister(resistrations.ID).Wait();
@@ -41,9 +42,8 @@ namespace BasketService.Api.Extensions
                 consulClient.Agent.ServiceDeregister(resistrations.ID).Wait();
             });
             return app;
-
-
         }
+
         public static IApplicationBuilder RegisterWithConsule(this IApplicationBuilder app, IHostApplicationLifetime lifetime, string IdName, string Name)
         {
             var consulClient = app.ApplicationServices.GetRequiredService<IConsulClient>();
@@ -70,8 +70,6 @@ namespace BasketService.Api.Extensions
                 consulClient.Agent.ServiceDeregister(resistrations.ID).Wait();
             });
             return app;
-
-
         }
     }
 }

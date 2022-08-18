@@ -1,23 +1,19 @@
 ﻿using BasketService.Api.Core.Domain.Models;
 using BasketService.Api.Interfaces;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using StackExchange.Redis;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BasketService.Api.Infrastrucutre.Repostorye
 {
-    public class RedisBasketRepsotory : IBasketRepsotory
+    public class BasketRepsotory : IBasketRepsotory
     {
-        private readonly ILogger<RedisBasketRepsotory> _logger;
+        private readonly ILogger<BasketRepsotory> _logger;
         private readonly ConnectionMultiplexer _redis;
         private readonly IDatabase database;
 
-        public RedisBasketRepsotory(ILoggerFactory logger, ConnectionMultiplexer connection)
+        public BasketRepsotory(ILoggerFactory logger, ConnectionMultiplexer connection)
         {
-            _logger = logger.CreateLogger<RedisBasketRepsotory>();
+            _logger = logger.CreateLogger<BasketRepsotory>();
             this._redis = connection;
             this.database = connection.GetDatabase();
         }
@@ -51,6 +47,7 @@ namespace BasketService.Api.Infrastrucutre.Repostorye
             if (!created)
             {
                 _logger.LogInformation("Problem occrued parsin the item");
+                return null;
             }
             _logger.LogInformation("Busket item parsin successfull");
             return await GetBasketAsync(cusomterBasket.BuyerId);

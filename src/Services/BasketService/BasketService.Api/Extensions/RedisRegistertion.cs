@@ -1,10 +1,7 @@
 ﻿using BasketService.Api.IntegrationEvents.EventHandler;
 using BasketService.Api.IntegrationEvents.Events;
 using EventBus.Base.Abstrasctions;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
-using System;
 
 namespace BasketService.Api.Extensions
 {
